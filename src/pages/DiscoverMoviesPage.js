@@ -11,7 +11,7 @@ export default function DiscoverMoviesPage() {
     const queryParam = encodeURIComponent(searchText);
 
     const response = await axios.get(
-      `https://omdbapi.com/?apikey=ca8ac45d&s=${queryParam}` // use your personal key
+      `https://omdbapi.com/?apikey=ca8ac45d&type=movie&s=${queryParam}` // use your personal key
     );
 
     console.log("Success!", response.data.Search);
@@ -22,12 +22,13 @@ export default function DiscoverMoviesPage() {
   return (
     <div>
       <h1>Discover some movies!</h1>
-      <p>
+      <div>
         <input
           value={searchText} // right now the input value is fixed on the initial useState
           onChange={(event) => set_searchText(event.target.value)} // calls set_searchtext and updates the useState when typing input
         />
         <button onClick={search}>Search</button>
+
         {!movies ? (
           <h3>Sorry, no results</h3>
         ) : (
@@ -45,7 +46,7 @@ export default function DiscoverMoviesPage() {
             );
           })
         )}
-      </p>
+      </div>
     </div>
   );
 }
